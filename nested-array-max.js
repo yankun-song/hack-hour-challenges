@@ -21,8 +21,9 @@ const nestedArrMax = (arr) => {
   if (!arr.length) return;
   let maxNum = -Infinity;
   arr.forEach((el) => {
-    if (Array.isArray(el)) maxNum = Math.max(maxNum, nestedArrMax(el));
-    else maxNum = Math.max(maxNum, el);
+    maxNum = Array.isArray(el)
+      ? Math.max(maxNum, nestedArrMax(el))
+      : Math.max(maxNum, el);
   });
   return maxNum;
 };
@@ -55,9 +56,9 @@ const nestedArrMaxLevel = (arr, level) => {
   if (level == 0) return -Infinity;
   let maxNum = -Infinity;
   arr.forEach((el) => {
-    if (Array.isArray(el))
-      maxNum = Math.max(maxNum, nestedArrMaxLevel(el, level - 1));
-    else maxNum = Math.max(maxNum, el);
+    maxNum = Array.isArray(el)
+      ? Math.max(maxNum, nestedArrMaxLevel(el, level - 1))
+      : Math.max(maxNum, el);
   });
   return maxNum;
 };
